@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conker's Solana Day | $CONKER - N64 Retro Pump.fun Meme</title>
+  <meta name="description" content="Conker's Solana Day ($CONKER) - The hungover red squirrel of the Solana blockchain. Fair launched on Pump.fun with 0% tax and pure 90s N64 Rareware mischief.">
+  <link rel="icon" type="image/jpeg" href="conker.jpg">
+  
+  <!-- Retro Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Chakra+Petch:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0f0a07;
+      --pub-wood: #2a1810;
+      --pub-wood-light: #442618;
+      --gold: #f9b233;
+      --gold-glow: #ffcc00;
+      --conker-orange: #f26522;
+      --conker-blue: #0072bc;
+      --n64-red: #e52521;
+      --n64-yellow: #fecb00;
+      --n64-green: #009944;
+      --n64-blue: #0066b3;
+      --text-light: #fef4e8;
+      --text-dim: #b89b88;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(242, 101, 34, 0.15) 0%, transparent 60%),
+        linear-gradient(rgba(15, 10, 7, 0.95), rgba(15, 10, 7, 0.95)),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.4) 2px, rgba(0,0,0,0.4) 4px);
+      color: var(--text-light);
+      font-family: 'Chakra Petch', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Scanline effect */
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 3px, 6px 100%;
+      z-index: 999;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Top Bar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: rgba(42, 24, 16, 0.85);
+      border: 3px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(249, 178, 51, 0.25);
+      margin-bottom: 30px;
+      backdrop-filter: blur(8px);
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .logo-badge img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+    }
+
+    .logo-badge span {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1rem;
+      color: var(--gold);
+      text-shadow: 2px 2px #000;
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'VT323', monospace;
+      font-size: 1.25rem;
+      background: rgba(0, 153, 68, 0.2);
+      border: 1px solid var(--n64-green);
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: #55ff99;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      background: #00ff66;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ff66;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: radial-gradient(circle at center, rgba(68, 38, 24, 0.7) 0%, rgba(20, 12, 8, 0.9) 100%);
+      border: 3px solid var(--pub-wood-light);
+      border-radius: 20px;
+      position: relative;
+      margin-bottom: 40px;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .token-art-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+
+    .token-art {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 6px solid var(--gold);
+      box-shadow: 0 0 35px rgba(242, 101, 34, 0.6), inset 0 0 20px rgba(0,0,0,0.5);
+      animation: float 4s ease-in-out infinite;
+      object-fit: cover;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    .hero-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 2.2rem;
+      color: var(--gold-glow);
+      text-shadow: 4px 4px 0px #000, -2px -2px 0px var(--conker-orange);
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      max-width: 680px;
+      margin: 0 auto 30px;
+      font-weight: 500;
+    }
+
+    /* Contract Address Card */
+    .ca-card {
+      background: #180f0a;
+      border: 2px dashed var(--gold);
+      border-radius: 12px;
+      padding: 15px 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 90%;
+      margin: 0 auto 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .ca-text {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      color: var(--gold);
+      word-break: break-all;
+    }
+
+    .btn-copy {
+      background: var(--gold);
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.65rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-copy:hover {
+      background: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    /* Action Buttons */
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.85rem;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-transform: uppercase;
+      border: 3px solid #000;
+    }
+
+    .btn-pump {
+      background: linear-gradient(135deg, #009944 0%, #00ff66 100%);
+      color: #000;
+      box-shadow: 0 6px 0px #005522, 0 10px 20px rgba(0, 255, 102, 0.3);
+    }
+
+    .btn-pump:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0px #005522, 0 15px 30px rgba(0, 255, 102, 0.5);
+    }
+
+    .btn-dex {
+      background: linear-gradient(135deg, var(--conker-blue) 0%, #00a4e4 100%);
+      color: #fff;
+      box-shadow: 0 6px 0px #003e68, 0 10px 20px rgba(0, 114, 188, 0.3);
+    }
+
+    .btn-dex:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0px #003e68, 0 15px 30px rgba(0, 114, 188, 0.5);
+    }
+
+    /* Context Sensitive Zone */
+    .context-box {
+      background: var(--pub-wood);
+      border: 3px solid var(--n64-red);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 35px;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      box-shadow: 0 6px 0px #731210;
+    }
+
+    .n64-b-btn {
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle at 35% 35%, #ff4d4d, var(--n64-red) 70%, #990000 100%);
+      border-radius: 50%;
+      border: 3px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.8rem;
+      color: #fff;
+      text-shadow: 2px 2px #000;
+      box-shadow: 0 6px 0px #660000, 0 0 20px rgba(229, 37, 33, 0.5);
+      cursor: pointer;
+      user-select: none;
+      flex-shrink: 0;
+      transition: all 0.1s;
+    }
+
+    .n64-b-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0px #660000;
+    }
+
+    .context-dialog {
+      flex: 1;
+    }
+
+    .context-dialog h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.9rem;
+      color: var(--n64-yellow);
+      margin-bottom: 8px;
+    }
+
+    .context-dialog p {
+      font-size: 1.15rem;
+      color: #f7e1d7;
+      font-style: italic;
+    }
+
+    /* Tokenomics Grid */
+    .tokenomics-section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.5rem;
+      text-align: center;
+      color: var(--gold);
+      margin-bottom: 25px;
+      text-shadow: 2px 2px #000;
+    }
+
+    .tokenomics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .tok-card {
+      background: rgba(42, 24, 16, 0.7);
+      border: 2px solid var(--pub-wood-light);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .tok-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      background: rgba(68, 38, 24, 0.8);
+    }
+
+    .tok-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .tok-val {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.25rem;
+      color: var(--gold-glow);
+      text-shadow: 2px 2px #000;
+    }
+
+    /* Lore Comic Box */
+    .lore-box {
+      background: #140d09;
+      border: 3px solid var(--gold);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      position: relative;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+    }
+
+    .lore-box h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.1rem;
+      color: var(--conker-orange);
+      margin-bottom: 15px;
+    }
+
+    .lore-box p {
+      font-size: 1.15rem;
+      color: #dfcfc4;
+      margin-bottom: 12px;
+    }
+
+    /* Roadmap */
+    .roadmap-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .roadmap-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(30, 17, 11, 0.8);
+      border-left: 5px solid var(--gold);
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
+
+    .roadmap-item.done {
+      border-left-color: var(--n64-green);
+    }
+
+    .roadmap-item .check {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.9rem;
+      color: #00ff66;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: #7a6355;
+      font-size: 0.9rem;
+      border-top: 2px solid var(--pub-wood);
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 1.5rem; }
+      .token-art { width: 170px; height: 170px; }
+      .btn { width: 100%; justify-content: center; }
+      .context-box { flex-direction: column; text-align: center; }
+      .ca-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <div class="container">
+    <!-- Top Header -->
+    <header>
+      <a href="#" class="logo-badge">
+        <img src="conker.jpg" alt="Conker Token Logo">
+        <span>$CONKER</span>
+      </a>
+      <div class="status-pill">
+        <span class="live-dot"></span>
+        <span>PUMP.FUN LIVE</span>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="token-art-wrapper">
+        <img src="conker.jpg" alt="Conker's Solana Day" class="token-art">
+      </div>
+      
+      <h1 class="hero-title">CONKER'S SOLANA DAY</h1>
+      <p class="hero-subtitle">
+        The legendary red squirrel woke up with a pounding hangover on Solana. 
+        No presale, 0% tax, and pure 1999 Rareware mischief on the Pump.fun curve.
+      </p>
+
+      <!-- Contract Box -->
+      <div class="ca-card">
+        <span class="ca-text" id="ca-text">CNQ4QZLYPwGfaj7w6CSkArSnUipfgXjMC6yps7g8Zhy1</span>
+        <button class="btn-copy" onclick="copyCA()" id="copy-btn">COPY CA</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="btn-group">
+        <a href="https://pump.fun/CNQ4QZLYPwGfaj7w6CSkArSnUipfgXjMC6yps7g8Zhy1" target="_blank" class="btn btn-pump" onclick="playCoinSound()">
+          🍺 APE ON PUMP.FUN
+        </a>
+        <a href="https://dexscreener.com/solana/CNQ4QZLYPwGfaj7w6CSkArSnUipfgXjMC6yps7g8Zhy1" target="_blank" class="btn btn-dex" onclick="playBlipSound()">
+          📊 DEXSCREENER CHART
+        </a>
+      </div>
+    </section>
+
+    <!-- Context Sensitive Zone -->
+    <div class="context-box">
+      <div class="n64-b-btn" onclick="triggerBButton()" title="Press B!">B</div>
+      <div class="context-dialog">
+        <h3>CONTEXT-SENSITIVE ZONE [PRESS 'B']</h3>
+        <p id="b-quote">"Look mate, I drank 14 pints of cider at the Cock and Plucker and now I'm on a blockchain. Just pump the curve so I can buy aspirin."</p>
+      </div>
+    </div>
+
+    <!-- Tokenomics -->
+    <section class="tokenomics-section">
+      <h2 class="section-title">TOKENOMICS FOR DEGENS</h2>
+      <div class="tokenomics-grid">
+        <div class="tok-card">
+          <div class="tok-label">Total Supply</div>
+          <div class="tok-val">1,000,000,000</div>
+        </div>
+        <div class="tok-card">
+          <div class="tok-label">Buy / Sell Tax</div>
+          <div class="tok-val">0% / 0%</div>
+        </div>
+        <div class="tok-card">
+          <div class="tok-label">Dev Take (Genesis)</div>
+          <div class="tok-val">~0.28%</div>
+        </div>
+        <div class="tok-card">
+          <div class="tok-label">Mint Authority</div>
+          <div class="tok-val">REVOKED</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hungover Lore -->
+    <section class="lore-box">
+      <h3>📖 THE HUNGOVER LORE</h3>
+      <p>
+        After escaping the Panther King, Conker tried to take a nap behind the local tavern. When he opened his eyes, 
+        his N64 expansion pak was overclocked to 65,000 TPS, Greg the Grim Reaper was trading meme coins, and the 
+        beer factory was replaced with the Pump.fun bonding curve.
+      </p>
+      <p>
+        Armed with a frying pan and an automated trading radar daemon running on an RTX 3080 Ti node, 
+        $CONKER is on a mission to drain liquidity from bad ruggers and give degens authentic 90s nostalgia.
+      </p>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="tokenomics-section">
+      <h2 class="section-title">ROADMAP</h2>
+      <ul class="roadmap-list">
+        <li class="roadmap-item done">
+          <span class="check">✔</span>
+          <span><strong>Phase 1:</strong> Fair Genesis Deployment on Solana Pump.fun Mainnet</span>
+        </li>
+        <li class="roadmap-item done">
+          <span class="check">✔</span>
+          <span><strong>Phase 2:</strong> 24/7 Autonomous Bot Management & Capital Defense Shields</span>
+        </li>
+        <li class="roadmap-item">
+          <span class="check">⏳</span>
+          <span><strong>Phase 3:</strong> Fill the Bonding Curve & Graduate directly to Raydium DEX</span>
+        </li>
+        <li class="roadmap-item">
+          <span class="check">⏳</span>
+          <span><strong>Phase 4:</strong> Buy out the Cock & Plucker pub and build a gold throne on-chain</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        $CONKER is a tribute meme coin inspired by the 1999-2001 Rareware Nintendo 64 classic. 
+        Zero intrinsic financial value, 100% entertainment and degen nostalgia.
+      </p>
+      <p style="margin-top: 10px;">
+        <a href="https://solscan.io/token/CNQ4QZLYPwGfaj7w6CSkArSnUipfgXjMC6yps7g8Zhy1" target="_blank">View on Solscan</a> | 
+        <a href="https://pump.fun/CNQ4QZLYPwGfaj7w6CSkArSnUipfgXjMC6yps7g8Zhy1" target="_blank">Pump.fun</a> | 
+        <a href="https://dexscreener.com/solana/CNQ4QZLYPwGfaj7w6CSkArSnUipfgXjMC6yps7g8Zhy1" target="_blank">DexScreener</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // 8-Bit Web Audio Synthesizer
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playCoinSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(987.77, audioCtx.currentTime); // B5
+      osc.frequency.setValueAtTime(1318.51, audioCtx.currentTime + 0.08); // E6
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.35);
+    }
+
+    function playBlipSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.05);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.15);
+    }
+
+    // Context Sensitive Quotes
+    const quotes = [
+      "\"Look mate, I drank 14 pints of cider at the Cock & Plucker and now I'm an SPL token. Pump the curve!\"",
+      "\"Context sensitive? Blimey, whenever I step here, I either get a flamethrower or 100x leverage!\"",
+      "\"Hey Berri! Don't look at my wallet, I just aped into a red squirrel token on Solana!\"",
+      "\"The Panther King's table has four legs now, and one of them is running a Solana validator!\"",
+      "\"Don't panic sell, mate. I've survived giant piles of poo, I can survive a red candle!\"",
+      "\"Gregg the Grim Reaper told me that paper hands don't get respawns in this chapter!\""
+    ];
+    let quoteIdx = 0;
+
+    function triggerBButton() {
+      playBlipSound();
+      quoteIdx = (quoteIdx + 1) % quotes.length;
+      document.getElementById('b-quote').innerText = quotes[quoteIdx];
+    }
+
+    function copyCA() {
+      playCoinSound();
+      const ca = document.getElementById('ca-text').innerText;
+      navigator.clipboard.writeText(ca).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.innerText = "COPIED!";
+        btn.style.background = "#00ff66";
+        setTimeout(() => {
+          btn.innerText = "COPY CA";
+          btn.style.background = "var(--gold)";
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
