@@ -323,6 +323,59 @@
       font-style: italic;
     }
 
+    /* How to Buy Guide */
+    .how-to-buy-section {
+      margin-bottom: 45px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .step-card {
+      background: rgba(35, 20, 13, 0.85);
+      border: 2px solid var(--pub-wood-light);
+      border-radius: 14px;
+      padding: 25px;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .step-card h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.95rem;
+      color: var(--gold-glow);
+      margin: 15px 0 10px;
+    }
+
+    .step-card p {
+      color: #dfcfc4;
+      font-size: 1.05rem;
+    }
+
     /* Tokenomics Grid */
     .tokenomics-section {
       margin-bottom: 40px;
@@ -371,6 +424,42 @@
       font-size: 1.25rem;
       color: var(--gold-glow);
       text-shadow: 2px 2px #000;
+    }
+
+    /* Community Hub Card */
+    .community-box {
+      background: radial-gradient(circle at 50% 50%, rgba(42, 24, 16, 0.9) 0%, rgba(15, 10, 7, 0.95) 100%);
+      border: 3px solid var(--conker-orange);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(242, 101, 34, 0.2);
+    }
+
+    .community-box h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .community-box p {
+      font-size: 1.15rem;
+      color: #dfcfc4;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    .btn-chat {
+      background: linear-gradient(135deg, var(--conker-orange) 0%, #ff8c42 100%);
+      color: #fff;
+      box-shadow: 0 6px 0px #9e3d09, 0 10px 20px rgba(242, 101, 34, 0.3);
+    }
+
+    .btn-chat:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 0px #9e3d09, 0 15px 30px rgba(242, 101, 34, 0.5);
     }
 
     /* Lore Comic Box */
@@ -424,6 +513,33 @@
       font-family: 'Press Start 2P', monospace;
       font-size: 0.9rem;
       color: #00ff66;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .faq-item {
+      background: rgba(30, 17, 11, 0.7);
+      border: 2px solid var(--pub-wood-light);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .faq-item h4 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .faq-item p {
+      color: #dfcfc4;
+      font-size: 1.05rem;
     }
 
     /* Footer */
@@ -504,6 +620,34 @@
       </div>
     </div>
 
+    <!-- How to Buy Guide -->
+    <section class="how-to-buy-section">
+      <h2 class="section-title">HOW TO BUY IN 3 EASY STEPS</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">STEP 1</div>
+          <h3>GET A SOLANA WALLET</h3>
+          <p>
+            Download a secure Web3 wallet like <strong>Phantom</strong>, <strong>Solflare</strong>, or <strong>Backpack</strong> from the app store or as a browser extension.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">STEP 2</div>
+          <h3>FUND WITH SOL</h3>
+          <p>
+            Deposit <strong>SOL</strong> into your wallet address. You can buy SOL directly inside Phantom or transfer it from Robinhood, Coinbase, or Kraken.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">STEP 3</div>
+          <h3>SWAP ON PUMP.FUN</h3>
+          <p>
+            Click the green <strong>APE ON PUMP.FUN</strong> button, connect your wallet, choose how much SOL to swap, and confirm! Instant tokens delivered.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Tokenomics -->
     <section class="tokenomics-section">
       <h2 class="section-title">TOKENOMICS FOR DEGENS</h2>
@@ -527,6 +671,17 @@
       </div>
     </section>
 
+    <!-- Community Hub (On-Chain Discussion) -->
+    <section class="community-box">
+      <h3>💬 ON-CHAIN COMMUNITY BOARD</h3>
+      <p>
+        Every holder can chat, drop memes, and talk strategy directly on our verified Pump.fun live discussion thread. No accounts or signups required — just your wallet!
+      </p>
+      <a href="https://pump.fun/CNQ4QZLYPwGfaj7w6CSkArSnUipfgXjMC6yps7g8Zhy1" target="_blank" class="btn btn-chat" onclick="playBlipSound()">
+        🍻 OPEN PUMP.FUN CHAT BOARD
+      </a>
+    </section>
+
     <!-- Hungover Lore -->
     <section class="lore-box">
       <h3>📖 THE HUNGOVER LORE</h3>
@@ -539,6 +694,25 @@
         Armed with a frying pan and an automated trading radar daemon running on an RTX 3080 Ti node, 
         $CONKER is on a mission to drain liquidity from bad ruggers and give degens authentic 90s nostalgia.
       </p>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section class="tokenomics-section">
+      <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Is the liquidity safe?</h4>
+          <p>Yes. 100% of the initial liquidity is locked in Pump.fun's immutable smart contract. When the curve reaches 100%, ~$12,000+ in SOL liquidity is automatically migrated and burned on Raydium DEX forever.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can the dev mint more tokens?</h4>
+          <p>No. The mint authority was irrevocably revoked at genesis. Total supply is fixed forever at 1 Billion $CONKER.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Are there any sneaky fees or taxes?</h4>
+          <p>Zero percent. You only pay standard Solana network gas (less than a fraction of a cent per transaction).</p>
+        </div>
+      </div>
     </section>
 
     <!-- Roadmap -->
